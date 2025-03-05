@@ -103,9 +103,7 @@ export class ViemSafeTransactionHasher implements ISafeTransactionHasher {
 
     // Properly encode the data as bytes before hashing it
     // This matches the Solidity keccak256(data) in the contract
-    const dataHash = keccak256(
-      encodeAbiParameters([{ type: "bytes" }], [viemTx.data])
-    );
+    const dataHash = keccak256(viemTx.data);
 
     // This matches the Solidity abi.encode(...) in the contract
     // We need to use the exact same encoding as the Solidity contract
@@ -158,7 +156,8 @@ export class ViemSafeTransactionHasher implements ISafeTransactionHasher {
   public calculateFinalSafeTxHash(tx: ISafeTransactionParams): HashValue {
     const rawSafeTxHash = this.calculateRawSafeTxHash(tx);
 
-    // First create the packed data without hashing (matches encodeTransactionData in the contract)
+    // Create the packed data without hashing (matches encodeTransactionData in the contract)
+    // Use the exact same format as the Solidity contract
     const packedData = concat(["0x19", "0x01", this.domainHash, rawSafeTxHash]);
 
     // Then hash it (matches getTransactionHash in the contract)

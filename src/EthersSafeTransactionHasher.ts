@@ -63,10 +63,8 @@ export class EthersSafeTransactionHasher implements ISafeTransactionHasher {
    * ));
    */
   public calculateRawSafeTxHash(tx: SafeTransactionParams): HashValue {
-    // First hash the data - matches keccak256(data) in the contract
-    const dataHash = ethers.keccak256(
-      ethers.AbiCoder.defaultAbiCoder().encode(["bytes"], [tx.data])
-    ) as HashValue;
+    // First hash the data directly - matches keccak256(data) in the contract
+    const dataHash = ethers.keccak256(tx.data) as HashValue;
 
     // Then encode all parameters - matches abi.encode(...) in the contract
     const encodedData = ethers.AbiCoder.defaultAbiCoder().encode(
@@ -120,10 +118,13 @@ export class EthersSafeTransactionHasher implements ISafeTransactionHasher {
     const rawSafeTxHash = this.calculateRawSafeTxHash(tx);
 
     // First create the packed data - matches encodeTransactionData in the contract
-    const packedData = ethers.solidityPacked(
-      ["bytes1", "bytes1", "bytes32", "bytes32"],
-      ["0x19", "0x01", this.domainHash, rawSafeTxHash]
-    );
+    // Use individual bytes to ensure exact matching with the Solidity implementation
+    const packedData = ethers.concat([
+      "0x19",
+      "0x01",
+      this.domainHash,
+      rawSafeTxHash,
+    ]);
 
     // Then hash it - matches getTransactionHash in the contract
     return ethers.keccak256(packedData) as HashValue;

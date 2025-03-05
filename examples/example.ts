@@ -14,7 +14,7 @@ const domain: DomainData = {
 };
 
 const safeTransaction: SafeTransactionParams = {
-  to: "0x8b4B268a9aA797fD60889E88AC7bE9a0C4b37Ff4",
+  to: "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
   value: 0n,
   data: "0xa9059cbb0000000000000000000000008b4b268a9aa797fd60889e88ac7be9a0c4b37ff40000000000000000000000000000000000000000000000000000000511b5ac00",
   operation: 0,
