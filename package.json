@@ -8,10 +8,11 @@
   },
   "scripts": {
     "test": "jest",
-    "example": "tsx examples/example.ts",
     "build": "tsc",
     "cli": "tsx bin/safe-tx-hash.ts",
-    "cli-example": "tsx bin/safe-tx-hash.ts --file examples/transaction.json --chain-id 59144 --safe-address 0xDb73ba19F072D0Fbc865781Ba468A9F8B77aD2C4"
+    "example-cli": "tsx bin/safe-tx-hash.ts --file examples/transaction.json --chain-id 59144 --safe-address 0xDb73ba19F072D0Fbc865781Ba468A9F8B77aD2C4",
+    "example": "tsx examples/example.ts",
+    "example-decode": "tsx examples/decode-data.ts"
   },
   "keywords": [],
   "author": "",

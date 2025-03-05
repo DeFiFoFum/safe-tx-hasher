@@ -6,4 +6,4 @@ export { ViemSafeTransactionHasher } from "./ViemSafeTransactionHasher";
 export { EthersSafeTransactionHasher } from "./EthersSafeTransactionHasher";
 
 // Export utility functions
-export * from "./utils/decodeData";
+export * from "./utils/TransactionDataDecoder";

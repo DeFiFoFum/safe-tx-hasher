@@ -4,6 +4,19 @@ A CLI tool and library for generating and validating Gnosis Safe transaction has
 
 > ⚠️ **WARNING**: This tool currently only supports Gnosis Safe version 1.3.0
 
+- [Safe Transaction Hasher](#safe-transaction-hasher)
+  - [Installation](#installation)
+  - [CLI Usage](#cli-usage)
+    - [Basic Usage](#basic-usage)
+    - [Options](#options)
+    - [Transaction JSON Format](#transaction-json-format)
+    - [Example Output](#example-output)
+  - [Hardware Wallet Verification](#hardware-wallet-verification)
+  - [Library Usage](#library-usage)
+    - [Transaction Data Decoding](#transaction-data-decoding)
+  - [Development](#development)
+  - [License](#license)
+
 ## Installation
 
 ```bash
@@ -127,6 +140,40 @@ console.log("Message Hash:", hashes.messageHash);
 console.log("Safe Tx Hash:", hashes.safeTxHash);
 ```
 
+### Transaction Data Decoding
+
+The library also provides utilities for decoding transaction data:
+
+```typescript
+import { TransactionDataDecoder } from 'safe-tx-hasher';
+
+// Create a decoder instance
+const decoder = new TransactionDataDecoder();
+
+// Decode ASCII data from a Safe transaction
+const encodedAsciiData = "0x000000000000000000000000000000000000000000000000000000000000008a30786139303539...";
+const asciiResult = decoder.decodeAsciiData(encodedAsciiData);
+if (asciiResult.success) {
+  console.log("Decoded ASCII data:", asciiResult.value);
+}
+
+// Decode a function call (e.g., ERC20 transfer)
+const functionCallData = "0xa9059cbb0000000000000000000000008b4b268a9aa797fd60889e88ac7be9a0c4b37ff40000000000000000000000000000000000000000000000000000000511b5ac00";
+const functionResult = decoder.decodeFunctionCall(functionCallData);
+if (functionResult.success) {
+  console.log("Function name:", functionResult.name);
+  console.log("Function signature:", functionResult.signature);
+  console.log("Function parameters:", functionResult.params);
+}
+```
+
+The decoder supports:
+
+- Validating hex data
+- Decoding ASCII data embedded in Safe transactions
+- Decoding common ERC20 function calls (transfer, transferFrom, approve, balanceOf)
+- Formatting decoded data for display
+
 ## Development
 
 ```bash
@@ -147,7 +194,10 @@ npm run build
 npm run cli -- --file transaction.json
 
 # Run the example CLI command with sample transaction
-npm run cli-example
+npm run example-cli
+
+# Run the transaction data decoder example
+npm run example-decode
 ```
 
 ## License
