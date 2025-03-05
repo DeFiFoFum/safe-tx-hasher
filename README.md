@@ -55,7 +55,7 @@ safe-tx-hash --json '{"to":"0x123...","value":"0","data":"0x...","operation":0,"
 
 The transaction JSON must include the following required fields:
 
-```json
+```js
 {
   "to": "0x123...",           // Target address (required)
   "value": "0",               // ETH value in wei (optional, default: 0)
