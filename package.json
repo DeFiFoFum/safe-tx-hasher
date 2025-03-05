@@ -1,6 +1,6 @@
 {
   "name": "safe-tx-hasher",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "CLI tool and library to generate and validate Gnosis Safe transaction hashes",
   "main": "dist/index.js",
   "bin": {
