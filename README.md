@@ -15,6 +15,7 @@ A CLI tool and library for generating and validating Gnosis Safe transaction has
   - [Library Usage](#library-usage)
     - [Transaction Data Decoding](#transaction-data-decoding)
   - [Development](#development)
+  - [CI/CD](#cicd)
   - [License](#license)
 
 ## Installation
@@ -200,6 +201,15 @@ npm run example-cli
 npm run example-decode
 ```
 
+## CI/CD
+
+This project uses GitHub Actions for continuous integration:
+
+- Tests run automatically on all pull requests
+- Tests run automatically on pushes to the main branch
+
+The workflow is defined in `.github/workflows/test.yml`.
+
 ## License
 
-ISC
+MIT
