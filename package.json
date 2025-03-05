@@ -1,16 +1,23 @@
 {
   "name": "safe-tx-hasher",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CLI tool and library to generate and validate Gnosis Safe transaction hashes",
+  "main": "dist/index.js",
+  "bin": {
+    "safe-tx-hash": "dist/bin/safe-tx-hash.js"
+  },
   "scripts": {
     "test": "jest",
-    "example": "tsx examples/example.ts"
+    "example": "tsx examples/example.ts",
+    "build": "tsc",
+    "cli": "tsx bin/safe-tx-hash.ts",
+    "cli-example": "tsx bin/safe-tx-hash.ts --file examples/transaction.json --chain-id 59144 --safe-address 0xDb73ba19F072D0Fbc865781Ba468A9F8B77aD2C4"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "commander": "^13.1.0",
     "ethers": "^6.13.5",
     "viem": "^2.23.6"
   },
