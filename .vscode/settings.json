@@ -1,0 +1,11 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#0F3236",
+        "titleBar.activeBackground": "#15464C",
+        "titleBar.activeForeground": "#F7FCFD"
+    },
+    "cSpell.words": [
+        "TYPEHASH",
+        "viem"
+    ]
+}
